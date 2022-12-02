@@ -3,7 +3,7 @@
 import * as vscode from 'vscode';
 
 let duckModeStatusBarItem: vscode.StatusBarItem;
-let duckModeOn = false;
+let duckModeOn =true;
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -12,6 +12,7 @@ export function activate({subscriptions}: vscode.ExtensionContext) {
 	const duckModeOnCommand = 'duck-mode.duckOn';
 	subscriptions.push(vscode.commands.registerCommand(duckModeOnCommand, () => {
 		duckModeOn = true;
+		vscode.commands.executeCommand('setContext', 'duck-mode.duckModeActive', duckModeOn);
 		displayDuckMode();
 		vscode.window.showInformationMessage('Duck mode activated!');
 	}));
@@ -19,6 +20,7 @@ export function activate({subscriptions}: vscode.ExtensionContext) {
 	const duckModeOffCommand = 'duck-mode.duckOff';
 	subscriptions.push(vscode.commands.registerCommand(duckModeOffCommand, () => {
 		duckModeOn = false;
+		vscode.commands.executeCommand('setContext', 'duck-mode.duckModeActive', duckModeOn);
 		displayDuckMode();
 		vscode.window.showInformationMessage('Duck mode deactivated!');
 	}));
@@ -26,7 +28,15 @@ export function activate({subscriptions}: vscode.ExtensionContext) {
 	const duckModeToggleCommand = 'duck-mode.toggle';
 	subscriptions.push(vscode.commands.registerCommand(duckModeToggleCommand, () => {
 		duckModeOn = !duckModeOn;
+		vscode.commands.executeCommand('setContext', 'duck-mode.duckModeActive', duckModeOn);
 		displayDuckMode();
+	}));
+
+	const duckModeQuackCommand = 'duck-mode.quack';
+	subscriptions.push(vscode.commands.registerCommand(duckModeQuackCommand, () => {
+		if (duckModeOn) {
+			vscode.window.showInformationMessage('Quack!');
+		}
 	}));
 
 	duckModeStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 1);

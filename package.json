@@ -26,6 +26,10 @@
       {
         "command": "duck-mode.toggle",
         "title": "Toggle Duck Mode"
+      },
+      {
+        "command": "duck-mode.quack",
+        "title": "Quack"
       }
     ],
     "icons": {
@@ -36,6 +40,16 @@
               "fontCharacter": "\\e900"
           }
       }
+    },
+    "menus": {
+      "editor/context": [
+       {
+        "command": "duck-mode.quack",
+        "title" : "Quack",
+        "group" : "z_commands@100",
+        "when" : "duck-mode.duckModeActive"
+       } 
+      ]
     }
   },
   "scripts": {

@@ -50,7 +50,30 @@
         "when" : "duck-mode.duckModeActive"
        } 
       ]
-    }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "duck-mode",
+          "title": "Duck Mode",
+          "icon": "resources/duck-mode.svg"
+        }
+      ]
+    },
+    "views": {
+      "duck-mode": [
+        {
+          "id": "duck-mode-breeds",
+          "name": "Breeds"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "duck-mode-breeds",
+        "contents" : "Duck mode allows you to maximise your ducking potential.\nYour code can be ducked up to your heart's content, and everyone will thing you are a ducking legend.\nStart by quacking until your ducking boss tells you to quit ducking about and get some ducking work done.\n[Start Duck Mode](command:duck-mode.duckOn)"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

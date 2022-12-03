@@ -2,7 +2,7 @@
   "name": "duck-mode",
   "displayName": "Duck Mode",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.73.0"
   },
@@ -10,7 +10,9 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:duck-mode.duckOn"
+    "onView:duck-mode.speciesView",
+    "onCommand:duck-mode.duckOn",
+    "onCommand:duck-mode.toggle"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -63,14 +65,21 @@
     "views": {
       "duck-mode": [
         {
-          "id": "duck-mode-breeds",
-          "name": "Breeds"
+          "id": "duck-mode-welcome",
+          "name": "Welcome",
+          "when" : "!duck-mode.duckModeActive"
+        },
+        {
+          "id": "duck-mode.speciesView",
+          "name": "Species",
+          "type": "webview",
+          "when" : "duck-mode.duckModeActive"
         }
       ]
     },
     "viewsWelcome": [
       {
-        "view": "duck-mode-breeds",
+        "view": "duck-mode-welcome",
         "contents" : "Duck mode allows you to maximise your ducking potential.\nYour code can be ducked up to your heart's content, and everyone will thing you are a ducking legend.\nStart by quacking until your ducking boss tells you to quit ducking about and get some ducking work done.\n[Start Duck Mode](command:duck-mode.duckOn)"
       }
     ]
@@ -94,6 +103,7 @@
     "glob": "^8.0.3",
     "mocha": "^10.1.0",
     "typescript": "^4.8.4",
-    "@vscode/test-electron": "^2.2.0"
+    "@vscode/test-electron": "^2.2.0",
+    "@types/vscode-webview": "^1.57.0"
   }
 }

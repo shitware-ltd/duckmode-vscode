@@ -1,0 +1,27 @@
+{
+    "New Duck Class": {
+        "prefix" : ["duck"],
+        "body" : [
+            "class Duck",
+            "{",
+            "\t",
+            "\tpublic function __construct(${1|public,private,protected|} string \\$species)",
+            "\t{",
+            "\t\t${0}",
+            "\t}",
+            "}",
+            ""
+        ],
+        "description" : "Adds a new Duck class formatted for PHP 8.0+"
+    },    
+    "Quack Function": {
+        "prefix" : ["quack"],
+        "body" : [
+            "${1|public,private,protected|} function quack(): void",
+            "{",
+            "\techo \"Quack!\";",
+            "}"
+        ],
+        "description" : "Adds a Quack function to a PHP class"
+    }
+}

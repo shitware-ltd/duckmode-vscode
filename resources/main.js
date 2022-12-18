@@ -20,7 +20,6 @@
 
     function audioQuack() {
         const audio = document.querySelector('audio');
-        console.log(audio);
         if(audio) {
             audio.play();
         }

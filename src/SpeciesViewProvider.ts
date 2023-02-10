@@ -68,7 +68,7 @@ export default class SpeciesViewProvider implements vscode.WebviewViewProvider {
 			</head>
 			<body>
 				<audio src="${quackMp3Uri}"></audio>
-                <h4>Mallard</h4>
+                <h5>Mallard</h5>
                 <img src="${duckImageUri}/mallard.jpg">
                 <h5>Merganser</h5>
                 <img src="${duckImageUri}/merganser.jpg">

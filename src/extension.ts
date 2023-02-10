@@ -1,10 +1,12 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import DuckCursor from './DuckCursors';
 import SpeciesViewProvider from './SpeciesViewProvider';
 
 let duckModeStatusBarItem: vscode.StatusBarItem;
 let duckModeOn =true;
+let duckCursor: DuckCursor | undefined = undefined;
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -60,16 +62,27 @@ export function activate({subscriptions, extensionUri}: vscode.ExtensionContext)
 	subscriptions.push(vscode.window.onDidChangeActiveTextEditor(displayDuckMode));
 	subscriptions.push(vscode.window.onDidChangeTextEditorSelection(displayDuckMode));
 
-
+	duckCursor = new DuckCursor();
+	duckCursor.start(subscriptions);
 	// update status bar item once at start
 	displayDuckMode();
 }
 
+function stopDuckMode() {
+	if (duckCursor) {
+		duckCursor.stop();
+	}
+}
 
 function displayDuckMode(): void {
 	const modeText = duckModeOn ? "On" : "Off";
-	duckModeStatusBarItem.text = `Duck Mode ${modeText} $(pd-duck)`;	
+	duckModeStatusBarItem.text = `Duck Mode ${modeText} $(pd-duck)`;
+	if (duckCursor) {
+		duckCursor.toggleDecorations(duckModeOn);
+	}
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+	stopDuckMode();
+}

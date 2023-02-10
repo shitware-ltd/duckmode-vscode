@@ -68,11 +68,23 @@ export default class SpeciesViewProvider implements vscode.WebviewViewProvider {
 			</head>
 			<body>
 				<audio src="${quackMp3Uri}"></audio>
-                <h5>Mallard</h5>
+                <h4>Bufflehead</h4>
+                <h6><i>Bucephala albeola</i></h6>
+                <img src="${duckImageUri}/bufflehead.jpg">
+                <h4>Fulvous Whistling</h4>
+                <h6><i>Dendrocygna bicolor</i></h6>
+                <img src="${duckImageUri}/fulvous-whistling.jpg">
+                <h4>Mallard</h4>
+                <h6><i>Anas platyrhynchos</i></h6>
                 <img src="${duckImageUri}/mallard.jpg">
-                <h5>Merganser</h5>
+                <h4>Marbled</h4>
+                <h6><i>Marmaronetta angustirostris</i></h6>
+                <img src="${duckImageUri}/marbled.jpg">
+                <h4>Merganser</h4>
+                <h6><i>Mergus serrator</i></h6>
                 <img src="${duckImageUri}/merganser.jpg">
-                <h5>Muscovy</h5>
+                <h4>Muscovy</h4>
+                <h6><i>Cairina moschata</i></h6>
                 <img src="${duckImageUri}/muscovy.jpg">
 				<script nonce="${nonce}" src="${scriptUri}"></script>
 			</body>

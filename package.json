@@ -2,7 +2,7 @@
   "name": "duck-mode",
   "displayName": "Duck Mode",
   "description": "Enables ducks for Visual Studio Code, something you never knew you needed until now.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "shitware-ltd",
   "engines": {
     "vscode": "^1.73.0"

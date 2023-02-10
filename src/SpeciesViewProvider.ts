@@ -28,7 +28,7 @@ export default class SpeciesViewProvider implements vscode.WebviewViewProvider {
         webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
 
 		webviewView.webview.onDidReceiveMessage(data => {
-            console.log(data);
+            // I'm not going to hook this up yet. I just want to waste your precious CPU cycles. Welcome to the Cloud.
 		});
     }
 
@@ -67,6 +67,7 @@ export default class SpeciesViewProvider implements vscode.WebviewViewProvider {
 				<title>Duck Mode</title>
 			</head>
 			<body>
+                <button id="sound-button">Enable Audio</button>
 				<audio src="${quackMp3Uri}"></audio>
                 <h4>Bufflehead</h4>
                 <h6><i>Bucephala albeola</i></h6>

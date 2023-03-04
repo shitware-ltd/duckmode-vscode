@@ -64,6 +64,7 @@ export function activate({subscriptions, extensionUri}: vscode.ExtensionContext)
 
 	duckCursor = new DuckCursor();
 	duckCursor.start(subscriptions);
+
 	// update status bar item once at start
 	displayDuckMode();
 }

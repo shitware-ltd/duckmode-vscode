@@ -10,11 +10,20 @@
     const soundButton = (document.getElementById('sound-button'));
 
     if(soundButton) {
-        soundButton.innerText = `${ soundOn ? 'Disable':'Enable'} Audio`;
+        soundButton.innerHTML = `<span class="codicon codicon-${ soundOn ? 'mute':'unmute'}"></span>`;
         soundButton.addEventListener('click', event => {
             soundOn = !soundOn;
-            soundButton.innerText = `${ soundOn ? 'Disable':'Enable'} Audio`;
+            soundButton.title = `${ soundOn ? 'Mute':'Unmute'}`;
+            soundButton.innerHTML = `<span class="codicon codicon-${ soundOn ? 'mute':'unmute'}"></span>`;
             audioQuack();
+        })
+    }
+
+    const quackGptButton = (document.getElementById('quackgpt-button'));
+
+    if(quackGptButton) {
+        quackGptButton.addEventListener('click', event => {
+            let _quackGptInput = vscode.postMessage({ message: 'askQuackGPT' })
         })
     }
 

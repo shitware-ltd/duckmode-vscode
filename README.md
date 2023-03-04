@@ -25,6 +25,26 @@ search. It's probably one of them.
 These release notes assume we'll release more than one version.
 We will probably never be that drunk again.
 
+### 0.1.0 - Arko memorial release. Taken from us too soon.
+
+- Added 3 new ducks.
+- Did some UI updates with buttons.
+- Playing funny buggers with semantic versioning.
+- Added QuackGPT in duck powered AI world first.
+
+### 0.0.3
+
+Added some icons or something? Probably more ducks, I dunno, it
+was a while between the code and this sentence.
+
+### 0.0.2
+
+Knuckled down hard and committed to keeping it appalling.
+
+### 0.0.1
+
+Woke up in the cold light of day, and realised what we had done.
+
 ### 0.0.0
 
 Initial release of duck mode. Damn. you really read this far?

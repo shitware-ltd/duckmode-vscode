@@ -24,7 +24,6 @@ if(quackGptButton) {
     })
 }
 
-// this fucking shit is not even working man fix ur stuff duck
 window.addEventListener('message', event => {
     const message = event.data; // The json data that the extension sent
     console.log(message);

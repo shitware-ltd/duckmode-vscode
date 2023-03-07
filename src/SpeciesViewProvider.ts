@@ -12,6 +12,10 @@ export default class SpeciesViewProvider implements vscode.WebviewViewProvider {
         private readonly _extensionUri: vscode.Uri
     ) {}
 
+    public getView() {
+        return this._view;
+    }
+
     public resolveWebviewView(
         webviewView: vscode.WebviewView, 
         context: vscode.WebviewViewResolveContext, 
@@ -48,6 +52,7 @@ export default class SpeciesViewProvider implements vscode.WebviewViewProvider {
 
     public doQuack() {
         if (this._view) {
+            console.log('doQuack')
             this._view.show?.(true);
             this._view.webview.postMessage({ type: 'audioQuack'});
         }
@@ -153,6 +158,21 @@ export default class SpeciesViewProvider implements vscode.WebviewViewProvider {
                 <h6><i>Thalassornis Leuconotus</i></h6>
                 <img src="${duckImageUri}/white-backed.jpg">
 				<script nonce="${nonce}" src="${scriptUri}"></script>
+                <script>
+                window.addEventListener('message', event => {
+                    const message = event.data; // The JSON data our extension sent
+                    witch (message.type) {
+                        case 'audioQuack':
+                            {
+                                const audio = document.querySelector('audio');
+                                if(audio) {
+                                    audio.play();
+                                }
+                                break;
+                            }
+                    }
+                });
+            </script>
 			</body>
 			</html>`;
     }

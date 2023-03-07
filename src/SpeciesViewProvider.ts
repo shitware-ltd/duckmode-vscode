@@ -158,21 +158,6 @@ export default class SpeciesViewProvider implements vscode.WebviewViewProvider {
                 <h6><i>Thalassornis Leuconotus</i></h6>
                 <img src="${duckImageUri}/white-backed.jpg">
 				<script nonce="${nonce}" src="${scriptUri}"></script>
-                <script>
-                window.addEventListener('message', event => {
-                    const message = event.data; // The JSON data our extension sent
-                    witch (message.type) {
-                        case 'audioQuack':
-                            {
-                                const audio = document.querySelector('audio');
-                                if(audio) {
-                                    audio.play();
-                                }
-                                break;
-                            }
-                    }
-                });
-            </script>
 			</body>
 			</html>`;
     }

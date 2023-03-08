@@ -2,11 +2,13 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import DuckCursor from './DuckCursors';
+import Quack from './Quack';
 import SpeciesViewProvider from './SpeciesViewProvider';
 
 let duckModeStatusBarItem: vscode.StatusBarItem;
 let duckModeOn =true;
 let duckCursor: DuckCursor | undefined = undefined;
+let quack: Quack | undefined = undefined;
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -64,6 +66,9 @@ export function activate({subscriptions, extensionUri}: vscode.ExtensionContext)
 
 	duckCursor = new DuckCursor();
 	duckCursor.start(subscriptions);
+
+    quack = new Quack();
+    quack.start(subscriptions);
 
 	// update status bar item once at start
 	displayDuckMode();

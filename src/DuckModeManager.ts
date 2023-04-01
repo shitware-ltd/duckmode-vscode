@@ -2,6 +2,7 @@
 import { commands, Disposable, StatusBarAlignment, StatusBarItem, Uri, window } from 'vscode';
 import DuckModeToggle from './commands/DuckModeToggle'
 import Cursors from './ducklibs/Cursors';
+import QuackOnSave from './ducklibs/Quack';
 import DuckModeProvider from './DuckModeProvider';
 import State from './DuckModeState';
 import SpeciesViewProvider from './SpeciesViewProvider';
@@ -18,6 +19,7 @@ export default class DuckModeManager
   private _statusBarItem: StatusBarItem;
   private _listeners: Disposable[] = [];
   private _cursors : Cursors = new Cursors();
+  private _quackOnSave : QuackOnSave = new QuackOnSave();
 
   public constructor(extensionUri: Uri) {
     this._duckModeProvider = new DuckModeProvider(this.state);
@@ -31,6 +33,7 @@ export default class DuckModeManager
     this._listeners.push(
       ...this._duckModeProvider.registerCommands(),
       this._speciesViewProvider.registerWebview(),
+      this._quackOnSave.register(),
       ...this._cursors.register()
     );
 

@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import DuckCursor from './DuckCursors';
 import DuckModeManager from './DuckModeManager';
-import Quack from './Quack';
+import Quack from './ducklibs/Quack';
 
 let duckCursor: DuckCursor | undefined = undefined;
 let quack: Quack | undefined = undefined;
@@ -14,9 +14,6 @@ export function activate({subscriptions, extensionUri}: vscode.ExtensionContext)
 
   duckCursor = new DuckCursor();
   duckCursor.start(subscriptions);
-
-  quack = new Quack();
-  quack.start(subscriptions);
 
 // update status bar item once at start
 // displayDuckMode();

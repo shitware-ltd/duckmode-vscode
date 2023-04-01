@@ -34,7 +34,7 @@ export default class DuckModeManager
       ...this._duckModeProvider.registerCommands(),
       this._speciesViewProvider.registerWebview(),
       this._quackOnSave.register(),
-      ...this._cursors.register()
+      this._cursors.register()
     );
 
     this._duckModeProvider.onDidUpdateState((active) => this.updateState(active));
@@ -65,6 +65,7 @@ export default class DuckModeManager
     this.setActivationContext();
     this.updateStatusBar();
     this.showActivationNotification();
+    this.showDecorations();
   }
 
   private setActivationContext(): void {
@@ -75,16 +76,17 @@ export default class DuckModeManager
     const modeText = this.state.duckModeActive ? "On" : "Off";
 
     this._statusBarItem.text = `Duck Mode ${modeText} $(pd-duck)`;
-    //if (duckCursor) {
-    //    duckCursor.toggleDecorations(duckModeOn);
-    //}
   }
 
-    private showActivationNotification(): void {
-      const message = 'Duck mode ' +
-        (this.state.duckModeActive ? '' : 'de') +
-        'activated!';
+  private showDecorations() : void {
+    this._cursors.toggleDecorations(this.state.duckModeActive);
+  }
 
-      window.showInformationMessage(message);
-   }
+  private showActivationNotification(): void {
+    const message = 'Duck mode ' +
+      (this.state.duckModeActive ? '' : 'de') +
+      'activated!';
+
+    window.showInformationMessage(message);
+  }
 }

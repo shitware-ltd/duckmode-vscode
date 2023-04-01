@@ -2,18 +2,13 @@
   "name": "duck-mode",
   "displayName": "Duck Mode",
   "description": "Enables ducks for Visual Studio Code, something you never knew you needed until now.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "shitware-ltd",
   "engines": {
-    "vscode": "^1.73.0"
+    "vscode": "^1.76.0"
   },
   "categories": [
     "Other"
-  ],
-  "activationEvents": [
-    "onView:duck-mode.speciesView",
-    "onCommand:duck-mode.duckOn",
-    "onCommand:duck-mode.toggle"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -37,21 +32,21 @@
     ],
     "icons": {
       "pd-duck": {
-          "description": "Public Domain Duck",
-          "default": {
-              "fontPath": "./duckmode.woff",
-              "fontCharacter": "\\e900"
-          }
+        "description": "Public Domain Duck",
+        "default": {
+          "fontPath": "./duckmode.woff",
+          "fontCharacter": "\\e900"
+        }
       }
     },
     "menus": {
       "editor/context": [
-       {
-        "command": "duck-mode.quack",
-        "title" : "Quack",
-        "group" : "z_commands@100",
-        "when" : "duck-mode.duckModeActive"
-       } 
+        {
+          "command": "duck-mode.quack",
+          "title": "Quack",
+          "group": "z_commands@100",
+          "when": "duck-mode.duckModeActive"
+        }
       ]
     },
     "viewsContainers": {
@@ -68,20 +63,20 @@
         {
           "id": "duck-mode-welcome",
           "name": "Welcome",
-          "when" : "!duck-mode.duckModeActive"
+          "when": "!duck-mode.duckModeActive"
         },
         {
           "id": "duck-mode.speciesView",
           "name": "Species",
           "type": "webview",
-          "when" : "duck-mode.duckModeActive"
+          "when": "duck-mode.duckModeActive"
         }
       ]
     },
     "viewsWelcome": [
       {
         "view": "duck-mode-welcome",
-        "contents" : "Duck mode allows you to maximise your ducking potential.\nYour code can be ducked up to your heart's content, and everyone will thing you are a ducking legend.\nStart by quacking until your ducking boss tells you to quit ducking about and get some ducking work done.\n[Go quack yourself ](command:duck-mode.duckOn)"
+        "contents": "Duck mode allows you to maximise your ducking potential.\nYour code can be ducked up to your heart's content, and everyone will thing you are a ducking legend.\nStart by quacking until your ducking boss tells you to quit ducking about and get some ducking work done.\n[Go quack yourself ](command:duck-mode.duckOn)"
       }
     ],
     "snippets": [
@@ -104,18 +99,19 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.73.0",
     "@types/glob": "^8.0.0",
     "@types/mocha": "^10.0.0",
     "@types/node": "16.x",
+    "@types/vscode": "^1.73.0",
+    "@types/vscode-webview": "^1.57.0",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
+    "@vscode/codicons": "0.0.20",
+    "@vscode/test-electron": "^2.2.0",
     "eslint": "^8.26.0",
     "glob": "^8.0.3",
     "mocha": "^10.1.0",
-    "typescript": "^4.9.4",
-    "@vscode/test-electron": "^2.2.0",
-    "@types/vscode-webview": "^1.57.0",
-    "@vscode/codicons": "0.0.20"
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
   }
 }

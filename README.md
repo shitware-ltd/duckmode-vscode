@@ -9,6 +9,8 @@ you are attracted to may take notice.
 ## Features
 
 - Duck icons. Everywhere.
+- Duck sounds.
+- AI integration. We don't know what AI is, but we integrated it.
 
 ## Requirements
 
@@ -24,6 +26,12 @@ search. It's probably one of them.
 
 These release notes assume we'll release more than one version.
 We will probably never be that drunk again.
+
+### 0.2.0 - Dan's Harem release. In honour of, well, we're not exactly sure what.
+
+- Major refactor, added actual tests. I think.
+- new Feature - Quack on Save, courtesy of Arko (now arisen from the dead).
+- Add random chance of parrot appearing during coding sessions
 
 ### 0.1.0 - Arko memorial release. Taken from us too soon.
 

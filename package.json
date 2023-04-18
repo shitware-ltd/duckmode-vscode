@@ -2,7 +2,7 @@
   "name": "duck-mode",
   "displayName": "Duck Mode",
   "description": "Enables ducks for Visual Studio Code, something you never knew you needed until now.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "shitware-ltd",
   "engines": {
     "vscode": "^1.76.0"
@@ -28,6 +28,10 @@
       {
         "command": "duck-mode.quack",
         "title": "Quack"
+      },
+      {
+        "command": "duck-mode.invoke-mia",
+        "title": "🦄 Invoke Mia"
       }
     ],
     "icons": {
@@ -44,6 +48,12 @@
         {
           "command": "duck-mode.quack",
           "title": "Quack",
+          "group": "z_commands@100",
+          "when": "duck-mode.duckModeActive"
+        },
+        {
+          "command": "duck-mode.invoke-mia",
+          "title": "🦄 Invoke Mia",
           "group": "z_commands@100",
           "when": "duck-mode.duckModeActive"
         }
@@ -79,6 +89,17 @@
         "contents": "Duck mode allows you to maximise your ducking potential.\nYour code can be ducked up to your heart's content, and everyone will thing you are a ducking legend.\nStart by quacking until your ducking boss tells you to quit ducking about and get some ducking work done.\n[Go quack yourself ](command:duck-mode.duckOn)"
       }
     ],
+    "configuration": {
+      "title": "Duck Mode",
+      "properties": {
+        "statusBar.background" : {
+          "type":"string",
+          "default": "#ff9999",
+          "description": "Initial status bar color",
+          "scope": "application"
+        }
+      }
+    },
     "snippets": [
       {
         "language": "php",

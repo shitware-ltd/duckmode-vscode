@@ -27,6 +27,10 @@ search. It's probably one of them.
 These release notes assume we'll release more than one version.
 We will probably never be that drunk again.
 
+### 0.2.1 - Invoke Mia BETA. In honor of The Prettiest Girl On The Internet.
+
+- Add "Invoke Mia". Sound requires the webview to currently be clicked to work. This is why it's a BETA.
+
 ### 0.2.0 - Dan's Harem release. In honour of, well, we're not exactly sure what.
 
 - Major refactor, added actual tests. I think.

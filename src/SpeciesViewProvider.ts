@@ -6,6 +6,7 @@ import {
 import { DuckMessage } from "./commands/DuckModeQuack";
 import Audio from "./ducklibs/Audio";
 import QuackGPT from "./ducklibs/QuackGPT";
+import QuackMia from "./ducklibs/QuackMia";
 
 export default class SpeciesViewProvider implements WebviewViewProvider {
 
@@ -14,6 +15,7 @@ export default class SpeciesViewProvider implements WebviewViewProvider {
   private _view?: WebviewView;
   private _audio: Audio;
   private _quackGPT: QuackGPT = new QuackGPT();
+  private _quackMia: QuackMia = new QuackMia();
 
   constructor(
     private readonly _extensionUri: Uri
@@ -34,7 +36,7 @@ export default class SpeciesViewProvider implements WebviewViewProvider {
   }
 
   public sendMessage(message: DuckMessage): void {
-    if (message.type === 'audio' && this._audio) {
+    if (this._audio) {
       this._audio.quack(message);
     }
   }
@@ -55,6 +57,7 @@ export default class SpeciesViewProvider implements WebviewViewProvider {
     this._view = webviewView;
     this._audio.webviewView = webviewView;
     this._quackGPT.webviewView = webviewView;
+    this._quackMia.webviewView = webviewView;
 
     webviewView.webview.options = {
         enableScripts: true,
@@ -79,6 +82,7 @@ export default class SpeciesViewProvider implements WebviewViewProvider {
     const codiconsUri = webview.asWebviewUri(Uri.joinPath(this._extensionUri, 'node_modules', '@vscode/codicons', 'dist', 'codicon.css'));
 
     const quackMp3Uri = webview.asWebviewUri(Uri.joinPath(this._extensionUri, 'resources', 'quack.mp3'));
+    const miaMp3Uri = webview.asWebviewUri(Uri.joinPath(this._extensionUri, 'resources', 'wiggle.mp3'));
     const duckImageUri = webview.asWebviewUri(Uri.joinPath(this._extensionUri, 'resources'));
 
     // Use a nonce to only allow a specific script to be run.
@@ -98,17 +102,23 @@ export default class SpeciesViewProvider implements WebviewViewProvider {
       </head>
       <body>
         <button appearance="secondary" id="sound-button" aria-label="Unmute">
-            Ask <span class="codicon codicon-unmute"></span>
+          <span class="codicon codicon-unmute"></span>
         </button>
 
         <button appearance="primary" id="quackgpt-button" aria-label="Ask QuackGPT a question." >
-            Ask QuackGPT
+          Ask QuackGPT
         </button>
 
         <audio src="${quackMp3Uri}" id="audio-quack"></audio>
+        <audio src="${miaMp3Uri}" id="audio-mia"></audio>
+
+        <div id="catled" class="hidden">
+          <img src="${duckImageUri}/catled.gif">
+        </div>
         <h4>Alabio</h4>
         <h6><i>Anas platyrhynchos Borneo</i></h6>
         <img src="${duckImageUri}/alabio.jpg">
+        
         <h4>Bufflehead</h4>
         <h6><i>Bucephala albeola</i></h6>
         <img src="${duckImageUri}/bufflehead.jpg">

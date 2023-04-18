@@ -1,7 +1,7 @@
 import { Disposable, OutputChannel, WebviewView, window } from "vscode";
 import { DuckMessage } from "../commands/DuckModeQuack";
 
-export default class QuackGPT{
+export default class QuackGPT {
 
   private _webviewView?: WebviewView;
   private _quackGPTchannel?: OutputChannel;
@@ -19,16 +19,19 @@ export default class QuackGPT{
     this._webviewView = webviewView;
 
     webviewView.webview.onDidReceiveMessage(data => {
-        window.showInputBox({
-            prompt: 'Ask QuackGPT showcases the latest breakthroughs in duck centric AI. Ask me anything!'
-        }).then((value) => {
-            if (value === undefined || this._quackGPTchannel === undefined) {
-              return;
-            }
-            this._quackGPTchannel.appendLine(this.getQuackGPTResponse(value || 'Quack.'));
-            this._quackGPTchannel.show();
-            this.quack(this.audio);
-        })
+      if (data !== 'askQuackGPT') {
+        return;
+      }
+      window.showInputBox({
+        prompt: 'Ask QuackGPT showcases the latest breakthroughs in duck centric AI. Ask me anything!'
+      }).then((value) => {
+        if (value === undefined || this._quackGPTchannel === undefined) {
+          return;
+        }
+        this._quackGPTchannel.appendLine(this.getQuackGPTResponse(value || 'Quack.'));
+        this._quackGPTchannel.show();
+        this.quack(this.audio);
+      })
     });
   }
 

@@ -1,4 +1,5 @@
-import { Disposable, Event, EventEmitter } from 'vscode';
+import { ConfigurationTarget, Disposable, Event, EventEmitter, workspace,window } from 'vscode';
+import DuckModeMia from './commands/DuckModeMia';
 import DuckModeOff from './commands/DuckModeOff';
 import DuckModeOn from './commands/DuckModeOn';
 import DuckModeQuack, { DuckMessage } from './commands/DuckModeQuack';
@@ -18,6 +19,7 @@ export default class DuckModeProvider implements Disposable {
   private _duckModeOff: DuckModeOff = new DuckModeOff();
   private _duckModeToggle: DuckModeToggle;
   private _duckModeQuack: DuckModeQuack = new DuckModeQuack();
+  private _duckModeMia: DuckModeMia = new DuckModeMia();
 
   constructor(private readonly state: State) {
     this._duckModeToggle = new DuckModeToggle(state);
@@ -47,12 +49,17 @@ export default class DuckModeProvider implements Disposable {
     return this._duckModeQuack;
   }
 
+  get duckModeMia(): DuckModeMia{
+    return this._duckModeMia;
+  }
+
   registerCommands(): Disposable[] {
     this._commands.push(
       this._duckModeOn.register(),
       this._duckModeOff.register(),
       this._duckModeToggle.register(),
-      this._duckModeQuack.register()
+      this._duckModeQuack.register(),
+      this._duckModeMia.register()
     );
 
     return this.registerActivations();
@@ -70,7 +77,15 @@ export default class DuckModeProvider implements Disposable {
         (active) => this._onDidUpdateStateEmitter.fire(active) 
       ),
       this.duckModeQuack.onDidActivate(
-        (audio: DuckMessage) => this._onDidSendMessageToWebview.fire(audio)
+        (audio: DuckMessage) => {
+          
+          this._onDidSendMessageToWebview.fire(audio)
+        }
+      ),
+      this.duckModeMia.onDidActivate(
+        (audio: DuckMessage) => {
+          this._onDidSendMessageToWebview.fire(audio)
+        }
       ),
     ];     
   }

@@ -14,6 +14,7 @@ if(soundButton) {
     soundOn = !soundOn;
     soundButton.title = `${ soundOn ? 'Mute':'Unmute'}`;
     soundButton.innerHTML = `<span class="codicon codicon-${ soundOn ? 'mute':'unmute'}"></span>`;
+    vscode.postMessage({ message: 'toggleSound', state: soundOn })
     playSound('audio-quack');
   })
 }
@@ -28,9 +29,23 @@ if (quackGptButton) {
 
 window.addEventListener('message', event => {
   const message = event.data;
+  let catled = document.getElementById('catled');
+
   switch (message.type) {
     case 'audio':
       playSound(message.domElementId);
+      break;
+    case 'mia':
+      if ( catled !== null) {
+        catled.className = '';
+      }
+      vscode.postMessage({ message: 'invokeMia' })
+      playSound(message.domElementId);
+      break;
+    case 'mia-stop':
+      if ( catled !== null) {
+        catled.className = 'hidden';
+      }
       break;
   }
 });
@@ -45,6 +60,7 @@ function playSound(domElementId) {
   }
 
   const audio = document.getElementById(domElementId);
+
   if (audio && audio instanceof HTMLAudioElement) {
     audio.play();
   }

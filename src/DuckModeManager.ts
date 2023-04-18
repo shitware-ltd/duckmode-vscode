@@ -11,7 +11,8 @@ export default class DuckModeManager
 {
   public state: State = {
     extensionActive: false,
-    duckModeActive : false
+    duckModeActive : false,
+    soundActive: false
   }
 
   private _duckModeProvider: DuckModeProvider;
@@ -38,7 +39,9 @@ export default class DuckModeManager
     );
 
     this._duckModeProvider.onDidUpdateState((active) => this.updateState(active));
-    this._duckModeProvider.onDidSendMessageToWebview((message) => this._speciesViewProvider.sendMessage(message));
+    this._duckModeProvider.onDidSendMessageToWebview((message) => {
+      this._speciesViewProvider.sendMessage(message)
+    });
     this.state.extensionActive = true;
 
     this._statusBarItem.command = DuckModeToggle.commandName;

@@ -16,7 +16,8 @@ suite('Duck Mode Toggle Test Suite', () => {
   test('it executes when the command is called', async () => {
     const state: State = {
       extensionActive : false,
-      duckModeActive: false
+      duckModeActive: false,
+      soundActive: false
     }
 
     const duckToggle = new DuckModeToggle(state);

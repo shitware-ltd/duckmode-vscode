@@ -15,7 +15,9 @@ export default class Quack implements Disposable {
   }
 
   public onDidSaveTextDocument(document: TextDocument) {
-    commands.executeCommand('duck-mode.quack');
+    if (! document.fileName.endsWith('settings.json')) {
+      commands.executeCommand('duck-mode.quack');
+    }
   }
 
   public dispose() {
